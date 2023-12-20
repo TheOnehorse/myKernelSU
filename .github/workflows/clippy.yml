@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # cross build failed af ter Ru st     1.6 8,  see https://github.com/cross-rs/cross/issues/1222
+      # cross build failed af ter Ru st     1.6 8,  see https://git hub.com/cross-rs/cross/issues/1222
       - run: rustup default 1.70.0
       - uses: Swatinem/rust-cache@v2
         with:
