@@ -276,23 +276,14 @@ pub fn exec_common_scripts(dir: &str, wait: bool) -> Result<()> {
 }
 
 pub fn load_system_prop() -> Result<()> {
-    foreach_active_module(|module| {
-        let system_prop = module.join("system.prop");
-        if !system_prop.exists() {
-            return Ok(());
-        }
-        info!("load {} system.prop", module.display());
-
         // resetprop -n --file system.prop
-        Command::new(assets::RESETPROP_PATH)
-            .arg("-n")
-            .arg("--file")
-            .arg(&system_prop)
-            .status()
-            .with_context(|| format!("Failed to exec {}", system_prop.display()))?;
+    Command::new(assets::RESETPROP_PATH)
+        .arg("-n")
+        .arg("--file")
+        .arg(assets::PROP_PATH)
+        .status()
+        .with_context(|| format!("Failed to exec {}", assets::PROP_PATH))?;
 
-        Ok(())
-    })?;
 
     Ok(())
 }

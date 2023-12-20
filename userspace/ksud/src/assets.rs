@@ -2,8 +2,9 @@ use anyhow::Result;
 use const_format::concatcp;
 use rust_embed::RustEmbed;
 
-use crate::{defs::BINARY_DIR, utils};
+use crate::{defs::BINARY_DIR,defs::WORKING_DIR, utils};
 
+pub const PROP_PATH: &str = concatcp!(WORKING_DIR, "my.prop");
 pub const RESETPROP_PATH: &str = concatcp!(BINARY_DIR, "resetprop");
 pub const BUSYBOX_PATH: &str = concatcp!(BINARY_DIR, "busybox");
 
