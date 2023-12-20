@@ -54,7 +54,7 @@ pub fn list_templates() -> Result<()> {
     Ok(())
 }
 
-pub fn apply_sepolies() -> Result<()> {
+/*pub fn apply_sepolies() -> Result<()> {
     let path = Path::new(defs::PROFILE_SELINUX_DIR);
     if !path.exists() {
         log::info!("profile sepolicy dir not exists.");
@@ -76,4 +76,4 @@ pub fn apply_sepolies() -> Result<()> {
         }
     }
     Ok(())
-}
+}*/

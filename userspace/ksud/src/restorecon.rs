@@ -10,7 +10,7 @@ use extattr::{lsetxattr, Flags as XattrFlags};
 
 pub const SYSTEM_CON: &str = "u:object_r:system_file:s0";
 pub const ADB_CON: &str = "u:object_r:adb_data_file:s0";
-pub const UNLABEL_CON: &str = "u:object_r:unlabeled:s0";
+//pub const UNLABEL_CON: &str = "u:object_r:unlabeled:s0";
 
 const SELINUX_XATTR: &str = "security.selinux";
 
@@ -25,7 +25,7 @@ pub fn lsetfilecon<P: AsRef<Path>>(path: P, con: &str) -> Result<()> {
     Ok(())
 }
 
-#[cfg(any(target_os = "linux", target_os = "android"))]
+/*#[cfg(any(target_os = "linux", target_os = "android"))]
 pub fn lgetfilecon<P: AsRef<Path>>(path: P) -> Result<String> {
     let con = extattr::lgetxattr(&path, SELINUX_XATTR).with_context(|| {
         format!(
@@ -35,7 +35,7 @@ pub fn lgetfilecon<P: AsRef<Path>>(path: P) -> Result<String> {
     })?;
     let con = String::from_utf8_lossy(&con);
     Ok(con.to_string())
-}
+}*/
 
 #[cfg(any(target_os = "linux", target_os = "android"))]
 pub fn setsyscon<P: AsRef<Path>>(path: P) -> Result<()> {
@@ -61,7 +61,7 @@ pub fn restore_syscon<P: AsRef<Path>>(dir: P) -> Result<()> {
     Ok(())
 }
 
-fn restore_syscon_if_unlabeled<P: AsRef<Path>>(dir: P) -> Result<()> {
+/*fn restore_syscon_if_unlabeled<P: AsRef<Path>>(dir: P) -> Result<()> {
     for dir_entry in WalkDir::new(dir).parallelism(Serial) {
         if let Some(path) = dir_entry.ok().map(|dir_entry| dir_entry.path()) {
             if let anyhow::Result::Ok(con) = lgetfilecon(&path) {
@@ -72,10 +72,10 @@ fn restore_syscon_if_unlabeled<P: AsRef<Path>>(dir: P) -> Result<()> {
         }
     }
     Ok(())
-}
+}*/
 
-pub fn restorecon() -> Result<()> {
+/*pub fn restorecon() -> Result<()> {
     lsetfilecon(defs::DAEMON_PATH, ADB_CON)?;
     restore_syscon_if_unlabeled(defs::MODULE_DIR)?;
     Ok(())
-}
+}*/

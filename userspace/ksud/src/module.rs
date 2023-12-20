@@ -182,7 +182,7 @@ fn grow_image_size(img: &str, extra_size: u64) -> Result<()> {
     Ok(())
 }
 
-pub fn load_sepolicy_rule() -> Result<()> {
+/*pub fn load_sepolicy_rule() -> Result<()> {
     foreach_active_module(|path| {
         let rule_file = path.join("sepolicy.rule");
         if !rule_file.exists() {
@@ -197,7 +197,7 @@ pub fn load_sepolicy_rule() -> Result<()> {
     })?;
 
     Ok(())
-}
+}*/
 
 fn exec_script<T: AsRef<Path>>(path: T, wait: bool) -> Result<()> {
     info!("exec {}", path.as_ref().display());
@@ -288,7 +288,7 @@ pub fn load_system_prop() -> Result<()> {
     Ok(())
 }
 
-pub fn prune_modules() -> Result<()> {
+/*pub fn prune_modules() -> Result<()> {
     foreach_module(false, |module| {
         remove_file(module.join(defs::UPDATE_FILE_NAME)).ok();
 
@@ -313,7 +313,7 @@ pub fn prune_modules() -> Result<()> {
     })?;
 
     Ok(())
-}
+}*/
 
 fn _install_module(zip: &str) -> Result<()> {
     ensure_boot_completed()?;

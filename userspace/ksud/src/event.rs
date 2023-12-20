@@ -3,10 +3,10 @@ use log::{info, warn};
 use std::path::PathBuf;
 use std::{collections::HashMap, path::Path};
 
-use crate::module::prune_modules;
+//use crate::module::prune_modules;
 use crate::{
     assets, defs, mount, restorecon,
-    utils::{self, ensure_clean_dir, ensure_dir_exists},
+    utils::{self, ensure_dir_exists},
 };
 
 fn mount_partition(partition: &str, lowerdir: &Vec<String>) -> Result<()> {
